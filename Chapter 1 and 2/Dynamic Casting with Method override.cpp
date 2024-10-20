@@ -10,6 +10,10 @@ public:
     virtual void show() {
         std::cout << "Base class show function\n";
     }
+
+    virtual ~Base() {  // Virtual destructor
+        std::cout << "Base class destructor\n";
+    }
 };
 
 /*
@@ -25,7 +29,10 @@ public:
     void sayHello() {
         std::cout << "Hello world" << std::endl;
     }
-
+    
+    ~Derived() {
+        std::cout << "Derived class destructor\n";
+    }
 
 };
 
@@ -46,7 +53,7 @@ int main() {
     so it will call the Derived class's version of show().
 */
     basePtr->show();  // Calls Derived class show, not Base class show
-    
+    delete basePtr;  // Correctly calls Derived destructor first, then Base destructor
 
 return 0;
 }
